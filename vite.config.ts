@@ -7,6 +7,10 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: { alias: {
     "@assets": "/src/assets",
+    "@zix/composables": "/src/zix/composables",
+    "@zix/components": "/src/zix/components",
+    "@zix/types": "/src/zix/types",
+    "@zix/core": "/src/zix/core",
   }},
 });
 

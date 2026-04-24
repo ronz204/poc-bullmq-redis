@@ -13,6 +13,11 @@
     /* Module Resolution */
     "paths": {
       "@assets/*": ["./src/assets/*"],
+
+      "@zix/composables/*": ["./src/zix/composables/*"],
+      "@zix/components/*": ["./src/zix/components/*"],
+      "@zix/types/*": ["./src/zix/types/*"],
+      "@zix/core/*": ["./src/zix/core/*"],
     },
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
