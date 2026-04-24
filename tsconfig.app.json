@@ -12,7 +12,9 @@
 
     /* Module Resolution */
     "paths": {
+      "@api/*": ["./src/api/*"],
       "@assets/*": ["./src/assets/*"],
+      "@shared/*": ["./src/shared/*"],
 
       "@zix/composables/*": ["./src/zix/composables/*"],
       "@zix/components/*": ["./src/zix/components/*"],
