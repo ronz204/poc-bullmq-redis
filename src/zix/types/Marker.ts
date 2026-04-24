@@ -1,4 +1,4 @@
-import type { ZixPoint, ZixBounds } from "./Geome";
+import type { ZixPoint, ZixBounds } from "./Geometric";
 
 export interface ZixMarker<ZixData> {
   id: number;
