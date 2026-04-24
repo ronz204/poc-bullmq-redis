@@ -1,4 +1,4 @@
-import type { ZixBounds, ZixPoint } from "@zix/types/Geome";
+import type { ZixBounds, ZixPoint } from "@zix/types/Geometric";
 import type { ZixMapOptions } from "@zix/types/Options";
 import type { TransformState } from "./Projection";
 
@@ -30,7 +30,7 @@ export class Viewport {
   };
   
   /**
-   * Obtiene el estado actual de la transformación
+   * Returns the current transform state
    */
   public getTransform(): TransformState {
     return {
@@ -41,14 +41,14 @@ export class Viewport {
   };
   
   /**
-   * Establece el zoom con clamp automático
+   * Sets the zoom level, clamped to min/max bounds
    */
   public setZoom(newZoom: number): void {
     this.scale = this.clampScale(newZoom)
   }
   
   /**
-   * Establece el offset (desplazamiento)
+   * Sets the absolute offset
    */
   public setOffset(x: number, y: number): void {
     this.offsetX = x
@@ -60,14 +60,13 @@ export class Viewport {
   }
   
   /**
-   * Aplica un zoom centrado en un punto específico de la pantalla
-   * Esta es la función clave para wheel y pinch zoom
+   * Applies zoom centered on a specific screen point (wheel & pinch)
    */
   public zoomAt(cursorScreen: ZixPoint, newScale: number): void {
     const clampedScale = this.clampScale(newScale)
     const scaleFactor = clampedScale / this.scale
     
-    // Fórmula para mantener el punto bajo el cursor estático
+    // Keep the point under the cursor fixed in screen space
     this.offsetX = cursorScreen.x - (cursorScreen.x - this.offsetX) * scaleFactor
     this.offsetY = cursorScreen.y - (cursorScreen.y - this.offsetY) * scaleFactor
     
@@ -79,7 +78,7 @@ export class Viewport {
   }
   
   /**
-   * Aplica un desplazamiento relativo (para pan/drag)
+   * Applies a relative offset (pan/drag)
    */
   public pan(deltaX: number, deltaY: number): void {
     this.offsetX += deltaX
@@ -91,7 +90,7 @@ export class Viewport {
   }
   
   /**
-   * Establece el estado completo de la transformación
+   * Sets the full transform state
    */
   public setTransform(transform: TransformState): void {
     this.scale = this.clampScale(transform.scale)
@@ -104,25 +103,23 @@ export class Viewport {
   }
   
   /**
-   * Actualiza los bounds del mapa
+   * Updates the map bounds
    */
   public setBounds(bounds: ZixBounds | undefined): void {
     this.bounds = bounds
   }
   
   /**
-   * Clamp del scale entre min y max zoom
+   * Clamps scale between min and max zoom
    */
   private clampScale(scale: number): number {
     return Math.max(this.minZoom, Math.min(this.maxZoom, scale))
   }
   
   /**
-   * Aplica restricciones de bounds para que el mapa no salga de vista
-   * (implementación simplificada - puede mejorarse)
+   * Applies bounds constraints to keep the map in view
    */
   private applyBoundsConstraints(): void {
-    // TODO: implementar lógica de clamping avanzada si se necesita
-    // Por ahora, solo aseguramos que el mapa no se vaya completamente fuera
+    // TODO: implement advanced clamping logic if needed
   }
 }

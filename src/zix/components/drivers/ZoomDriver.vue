@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UseZixViewportReturn } from "@zix/composables/useZixViewport";
+import type { UseZixViewportReturn } from "@zix/types/Composables";
 import { inject, computed } from "vue";
 
 const props = defineProps({

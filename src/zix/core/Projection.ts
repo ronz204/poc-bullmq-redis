@@ -1,13 +1,13 @@
-import type { ZixPoint, ZixBounds } from "@zix/types/Geome"
+import type { ZixPoint, ZixBounds } from "@zix/types/Geometric"
 
 export interface TransformState {
-  scale: number;      // factor de zoom
-  offsetX: number;    // desplazamiento horizontal en px de pantalla
-  offsetY: number;    // desplazamiento vertical en px de pantalla
+  scale: number;      // zoom factor
+  offsetX: number;    // horizontal offset in screen pixels
+  offsetY: number;    // vertical offset in screen pixels
 };
 
 /**
- * Convierte un punto de coordenadas de imagen a coordenadas de pantalla
+ * Converts a point from image coordinates to screen coordinates
  */
 export function imageToScreen(point: ZixPoint, transform: TransformState): ZixPoint {
   return {
@@ -17,7 +17,7 @@ export function imageToScreen(point: ZixPoint, transform: TransformState): ZixPo
 }
 
 /**
- * Convierte un punto de coordenadas de pantalla a coordenadas de imagen
+ * Converts a point from screen coordinates to image coordinates
  */
 export function screenToImage(point: ZixPoint, transform: TransformState): ZixPoint {
   return {
@@ -27,8 +27,7 @@ export function screenToImage(point: ZixPoint, transform: TransformState): ZixPo
 }
 
 /**
- * Genera la matriz CSS transform para aplicar al contenedor del mapa
- * Esta es la transformación que se aplica a todo el contenido (SVG, markers, edges)
+ * Builds the CSS transform matrix to apply to the map container
  */
 export function getTransformMatrix(transform: TransformState): string {
   const { scale, offsetX, offsetY } = transform
@@ -36,8 +35,7 @@ export function getTransformMatrix(transform: TransformState): string {
 }
 
 /**
- * Calcula el zoom y offset necesarios para encuadrar un área específica
- * dentro del viewport con padding opcional
+ * Calculates the zoom and offset needed to fit an area within the viewport
  */
 export function calculateFitTransform(
   imageBounds: ZixBounds,
@@ -50,12 +48,12 @@ export function calculateFitTransform(
   const availableWidth = viewportSize.width - padding * 2;
   const availableHeight = viewportSize.height - padding * 2;
   
-  // Calcular el scale que permite que toda el área entre con padding
+  // Scale that fits the entire area with padding
   const scaleX = availableWidth / imageWidth;
   const scaleY = availableHeight / imageHeight;
   const scale = Math.min(scaleX, scaleY);
   
-  // Calcular el offset para centrar el área
+  // Offset to center the area
   const scaledWidth = imageWidth * scale;
   const scaledHeight = imageHeight * scale;
   
