@@ -1,4 +1,4 @@
-import type { ZixPoint, ZixBounds } from "@zix/types/Geometric"
+import type { ZixPoint, ZixBounds } from "@zix/types/Geometric";
 
 export interface TransformState {
   scale: number;      // zoom factor

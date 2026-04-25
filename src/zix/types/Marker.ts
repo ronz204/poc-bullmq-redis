@@ -1,4 +1,4 @@
-import type { ZixPoint, ZixBounds } from "./Geometric";
+import type { ZixPoint } from "./Geometric";
 
 export interface ZixMarker<ZixData> {
   id: number;
@@ -6,11 +6,4 @@ export interface ZixMarker<ZixData> {
   floor: number;
   data: ZixData;
   position: ZixPoint;
-};
-
-export interface ZixLevel {
-  id: number;
-  name: string;
-  image: string;
-  bounds: ZixBounds;
 };
