@@ -4,8 +4,8 @@ import { inject, computed } from "vue";
 
 const props = defineProps({
   position: {
-    type: String as () => 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left',
-    default: 'top-right',
+    type: String as () => "top-right" | "top-left" | "bottom-right" | "bottom-left",
+    default: "top-right",
   },
   step: {
     type: Number,
@@ -38,10 +38,10 @@ function zoomOut() {
 };
 
 const positionClasses = computed(() => ({
-  'top-4 right-4': props.position === 'top-right',
-  'top-4 left-4': props.position === 'top-left',
-  'bottom-4 right-4': props.position === 'bottom-right',
-  'bottom-4 left-4': props.position === 'bottom-left'
+  "top-4 right-4": props.position === "top-right",
+  "top-4 left-4": props.position === "top-left",
+  "bottom-4 right-4": props.position === "bottom-right",
+  "bottom-4 left-4": props.position === "bottom-left"
 }));
 </script>
 
