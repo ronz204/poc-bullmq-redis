@@ -1,16 +1,15 @@
 name: bullmq
 
 include:
-  - services/cache/compose.yml
-  - services/queues/compose.yml
+  - services/caching/compose.yml
 
 volumes:
   cache-data:
     driver: local
     name: cache-data
-  queues-data:
+  bullmq-data:
     driver: local
-    name: queues-data
+    name: bullmq-data
 
 networks:
   bullmq-network:
