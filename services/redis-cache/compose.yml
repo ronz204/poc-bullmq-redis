@@ -1,19 +1,17 @@
 services:
   cache:
-    env_file: .env.local
     container_name: cache
     image: redis:alpine3.23
     restart: unless-stopped
+    env_file: .env.${ENV:-local}
     command: >
       sh -c "redis-server
       --requirepass \"$$REDIS_PASSWORD\"
-      --maxmemory 512mb
-    ports:
-      - "6379:6379"
+      --maxmemory 512mb"
     networks:
-      - bullmq-network
+      - bullky-network
     volumes:
-      - cache-data:/data
+      - bullky-cache-data:/data
     healthcheck:
       test: ["CMD-SHELL", "redis-cli -a $$REDIS_PASSWORD --no-auth-warning ping | grep -q PONG"]
       start_period: 15s
