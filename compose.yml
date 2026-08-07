@@ -1,17 +1,18 @@
-name: bullmq
+name: bullky
 
 include:
-  - services/caching/compose.yml
+  - ./services/redis-cache/compose.yml
+  - ./services/redis-queue/compose.yml
 
 volumes:
-  cache-data:
+  bullky-cache-data:
     driver: local
-    name: cache-data
-  bullmq-data:
+    name: bullky-cache-data
+  bullky-queue-data:
     driver: local
-    name: bullmq-data
+    name: bullky-queue-data
 
 networks:
-  bullmq-network:
+  bullky-network:
     driver: bridge
-    name: bullmq-network
+    name: bullky-network
